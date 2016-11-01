@@ -1,6 +1,8 @@
 package com.gnidoc.pre_training;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -51,5 +53,18 @@ public class DragActivity extends Activity {
                 return false;
             }
         });
+    }
+
+    public void showDialog(View v){
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("설명");
+        alertDialog.setMessage("이미지를 드래그하면 이미지가 바뀝니다.");
+        alertDialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 }

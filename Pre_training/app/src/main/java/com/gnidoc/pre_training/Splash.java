@@ -17,11 +17,15 @@ public class Splash extends Activity {
     TextView start, notice, exercise;
     WebView webView;
 
+    int count;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        count = 0;
 
         start = (TextView) findViewById(R.id.start);
         notice = (TextView) findViewById(R.id.ex);
@@ -60,7 +64,8 @@ public class Splash extends Activity {
 
     @Override
     protected void onResume() {
-        Log.i(TAG, "onResume");
+        //TODO 화면을 닫을때마다 count 숫자를 증가시켜보자
+        Log.i(TAG, "onResume, count = "+count);
         super.onResume();
     }
 

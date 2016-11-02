@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
-    </WebView>
+</WebView>
 
 
     <TextView
@@ -33,7 +33,6 @@
         android:text="시작"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:id="@+id/start"
         android:onClick="goToMain"
         android:layout_below="@+id/editText"
@@ -58,4 +57,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:id="@+id/notice" />
+
+    <Button
+        android:text="음악재생"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToMusic"
+        android:id="@+id/music_btn" />
 </RelativeLayout>

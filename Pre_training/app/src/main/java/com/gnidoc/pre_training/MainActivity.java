@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
                 //TODO 리스트 목록을 누르면 기록이 삭제하도록 만들어보자
+
             }
         });
     }

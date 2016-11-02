@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_music"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.gnidoc.pre_training.MusicActivity">
+
+    <Button
+        android:text="재생"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="124dp"
+        android:layout_marginTop="60dp"
+        android:onClick="startMusic"
+        android:id="@+id/m_btn" />
+
+    <Button
+        android:text="정지"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/m_btn"
+        android:layout_alignStart="@+id/m_btn"
+        android:layout_marginTop="52dp"
+        android:onClick="stopMusic"
+        android:id="@+id/m_stop_btn" />
+</RelativeLayout>

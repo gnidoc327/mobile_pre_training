@@ -2,6 +2,7 @@ package com.gnidoc.pre_training;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Splash extends Activity {
     static final String TAG = Splash.class.getSimpleName();
 
     TextView start, notice, exercise;
     WebView webView;
+
 
     int count;
 
@@ -32,6 +35,8 @@ public class Splash extends Activity {
         exercise = (TextView) findViewById(R.id.notice);
 
         webView = (WebView) findViewById(R.id.web_view);
+
+
     }
 
     public void goToWiki(View v){
@@ -43,6 +48,11 @@ public class Splash extends Activity {
 
     public void goToMain(View v){
         Intent intent = new Intent(Splash.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToMusic(View v){
+        Intent intent = new Intent(Splash.this, MusicActivity.class);
         startActivity(intent);
     }
 
@@ -66,6 +76,7 @@ public class Splash extends Activity {
     protected void onResume() {
         //TODO 화면을 닫을때마다 count 숫자를 증가시켜보자
         Log.i(TAG, "onResume, count = "+count);
+        Toast.makeText(this, "인서야 잘하자", Toast.LENGTH_SHORT).show();
         super.onResume();
     }
 

@@ -26,4 +26,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M3'
+}
+repositories {
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
 }

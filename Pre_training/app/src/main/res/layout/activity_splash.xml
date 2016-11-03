@@ -10,13 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.gnidoc.pre_training.Splash">
 
+    <TextView
+        android:id="@+id/gps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="알 수 없음"/>
+
     <WebView
+        android:layout_below="@+id/gps"
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="200dp">
-
-</WebView>
-
+    </WebView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,4 +71,14 @@
         android:layout_centerHorizontal="true"
         android:onClick="goToMusic"
         android:id="@+id/music_btn" />
+
+    <Button
+        android:text="공유하기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_toEndOf="@+id/ex"
+        android:layout_marginStart="25dp"
+        android:onClick="shareSNS"
+        android:id="@+id/sns" />
 </RelativeLayout>

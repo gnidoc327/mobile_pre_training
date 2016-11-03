@@ -4,16 +4,20 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +31,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Splash extends Activity {
     static final String TAG = Splash.class.getSimpleName();
@@ -186,10 +193,46 @@ public class Splash extends Activity {
 
     public void shareSNS(View v){
         Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "주제 - ");
-        intent.putExtra(Intent.EXTRA_TEXT, "인서야 잘하자");
-        Intent chooserIntent = Intent.createChooser(intent, "SNS");
+        intent.setType("image/*");
+
+        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(intent, 0);
+        if (resInfo.isEmpty()) {
+            return;
+        }
+
+        List<Intent> shareIntentList = new ArrayList<>();
+
+        //temp라는 폴더를 만들어서 10.jpg를 넣으면 image가 공유
+        //Uri uri = Uri.parse("file://"+ Environment.getExternalStorageDirectory().toString()+ "/temp/10.jpg");
+        //intent.putExtra(Intent.EXTRA_STREAM,  uri);
+
+        for (ResolveInfo info : resInfo) {
+            Intent shareIntent = (Intent) intent.clone();
+
+            if (info.activityInfo.packageName.toLowerCase().equals("com.facebook.katana")) {
+                //facebook
+                intent.setType("text/plain");
+                //intent.setType("image/*");
+                ComponentName componentName = new ComponentName(info.activityInfo.applicationInfo.packageName, info.activityInfo.name);
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "제목");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "구글 http://www.google.com #");
+                shareIntent.setComponent(componentName);
+                shareIntent.setPackage(info.activityInfo.packageName);
+                shareIntentList.add(shareIntent);
+            } else if(info.activityInfo.packageName.toLowerCase().equals("com.kakao.talk")) {
+                intent.setType("text/plain");
+                //intent.setType("image/*");
+                ComponentName componentName = new ComponentName(info.activityInfo.applicationInfo.packageName, info.activityInfo.name);
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "제목");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "구글 http://www.google.com #");
+                shareIntent.setComponent(componentName);
+                shareIntent.setPackage(info.activityInfo.packageName);
+                shareIntentList.add(shareIntent);
+            }
+        }
+
+        Intent chooserIntent = Intent.createChooser(shareIntentList.remove(0), "SNS에 공유하기");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, shareIntentList.toArray(new Parcelable[]{}));
         startActivity(chooserIntent);
     }
 
